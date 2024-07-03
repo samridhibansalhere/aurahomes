@@ -5,18 +5,28 @@ import { revalidatePath } from "next/cache";
 
 export const GetCurrentUserFromMongoDB = async () => {
   try {
+    // check if user is already exists with clerk userid property
     const clerkUser = await currentUser();
-    let mongoUser = await prisma.user.findUnique({
+    let mongoUser = null;
+    mongoUser = await prisma.user.findUnique({
       where: {
         clerkUserId: clerkUser?.id,
       },
     });
     if (mongoUser) {
-      return { data: mongoUser };
+      return {
+        data: mongoUser,
+      };
     }
 
-    let username = clerkUser?.username || `${clerkUser?.firstName} ${clerkUser?.lastName}`.replace("null", "");
-    const newUser = {
+    // if user doesn't exists, create new user
+    let username = clerkUser?.username;
+    if (!username) {
+      username = clerkUser?.firstName + " " + clerkUser?.lastName;
+    }
+
+    username = username.replace("null", "");
+    const newUser: any = {
       clerkUserId: clerkUser?.id,
       username,
       email: clerkUser?.emailAddresses[0].emailAddress,
@@ -25,9 +35,14 @@ export const GetCurrentUserFromMongoDB = async () => {
     const result = await prisma.user.create({
       data: newUser,
     });
-    return { data: result };
+    return {
+      data: result,
+    };
   } catch (error: any) {
-    return { error: error.message };
+    console.log(error);
+    return {
+      error: error.message,
+    };
   }
 };
 
