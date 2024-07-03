@@ -122,7 +122,7 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
             AuraHomes
           </h1>
 
-          <div className="bg-white sm:gap-2 sm:py-1 sm:px-2  py-2 px-5 rounded-sm flex items-center gap-5">
+          <div className="bg-white py-2 px-5 rounded-sm flex items-center gap-5">
             <Button
               className="text-primary hover:text-primary"
               type="link"
