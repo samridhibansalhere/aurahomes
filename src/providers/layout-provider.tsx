@@ -78,9 +78,9 @@ function Sidebar({ showSidebar, setShowSidebar, menuToShow }: {
         {menuToShow.map((item, index) => (
           <div
             key={index}
-            className={`flex gap-4 items-center text-gray-700 cursor-pointer px-4 py-2 rounded ${
+            className={flex gap-4 items-center text-gray-700 cursor-pointer px-4 py-2 rounded ${
               pathname === item.path ? "bg-primary text-white" : ""
-            }`}
+            }}
             onClick={() => {
               router.push(item.path);
               setShowSidebar(false);
@@ -122,15 +122,15 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
             AuraHomes
           </h1>
 
-          <div className="bg-white py-2 px-5 rounded-sm flex items-center gap-5 sm:gap-2 sm:py-1 sm:px-2">
+          <div className="bg-white sm:gap-2 sm:py-1 sm:px-2  py-2 px-5 rounded-sm flex items-center gap-5">
             <Button
-              className="text-primary hover:text-primary sm:text-xs"
+              className="text-primary hover:text-primary"
               type="link"
               onClick={() => setDrawerVisible(true)}
             >
               {currentUserData?.username}
             </Button>
-            <UserButton className="sm:w-8 sm:h-8" afterSignOutUrl="/sign-in" />
+            <UserButton afterSignOutUrl="/sign-in" />
           </div>
         </div>
       </div>
