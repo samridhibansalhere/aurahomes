@@ -122,15 +122,15 @@ function LayoutProvider({ children }: { children: React.ReactNode }) {
             AuraHomes
           </h1>
 
-          <div className="bg-white py-2 px-5 rounded-sm flex items-center gap-5">
+          <div className="bg-white py-2 px-5 rounded-sm flex items-center gap-5 sm:gap-2 sm:py-1 sm:px-2">
             <Button
-              className="text-primary hover:text-primary"
+              className="text-primary hover:text-primary sm:text-xs"
               type="link"
               onClick={() => setDrawerVisible(true)}
             >
               {currentUserData?.username}
             </Button>
-            <UserButton afterSignOutUrl="/sign-in" />
+            <UserButton className="sm:w-8 sm:h-8" afterSignOutUrl="/sign-in" />
           </div>
         </div>
       </div>
