@@ -78,9 +78,7 @@ function Sidebar({ showSidebar, setShowSidebar, menuToShow }: {
         {menuToShow.map((item, index) => (
           <div
             key={index}
-            className={flex gap-4 items-center text-gray-700 cursor-pointer px-4 py-2 rounded ${
-              pathname === item.path ? "bg-primary text-white" : ""
-            }}
+            className={`flex gap-4 items-center text-gray-700 cursor-pointer px-4 py-2 rounded ${pathname === item.path ? "bg-primary text-white" : ""}`}
             onClick={() => {
               router.push(item.path);
               setShowSidebar(false);
